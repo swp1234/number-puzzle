@@ -1,28 +1,15 @@
 {
   "name": "Number Puzzle 2048",
   "short_name": "2048",
-  "description": "Combine numbers to reach 2048 in this addictive puzzle game",
-  "start_url": "index.html",
-  "scope": "/",
+  "description": "숫자를 합쳐 2048을 만드는 중독성 높은 퍼즐 게임",
+  "start_url": ".",
   "display": "standalone",
-  "orientation": "portrait-primary",
+  "orientation": "portrait",
   "theme_color": "#EDB879",
   "background_color": "#f5f5f5",
-  "categories": ["games", "puzzle"],
-  "screenshots": [
-    {
-      "src": "icon-192.svg",
-      "sizes": "192x192",
-      "type": "image/svg+xml",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "icon-512.svg",
-      "sizes": "512x512",
-      "type": "image/svg+xml",
-      "form_factor": "wide"
-    }
-  ],
+  "lang": "ko",
+  "dir": "ltr",
+  "categories": ["games", "entertainment"],
   "icons": [
     {
       "src": "icon-192.svg",
@@ -35,19 +22,30 @@
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any"
+    },
+    {
+      "src": "icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     }
   ],
   "shortcuts": [
     {
-      "name": "New Game",
-      "short_name": "Play",
-      "description": "Start a new game",
+      "name": "새 게임",
+      "short_name": "시작",
+      "description": "새 게임 시작",
       "url": "index.html?action=newgame",
       "icons": [
         {
           "src": "icon-192.svg",
-          "sizes": "192x192",
-          "type": "image/svg+xml"
+          "sizes": "192x192"
         }
       ]
     }
