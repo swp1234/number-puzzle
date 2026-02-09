@@ -304,7 +304,17 @@ class Game2048 {
         if (emptyIndices.length === 0) return;
 
         const randomIndex = emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
-        this.tiles[randomIndex] = Math.random() < 0.9 ? 2 : 4;
+        // Improved difficulty: spawn 2 more often early game
+        // First 3 moves: 95% chance of 2 (only 5% chance of 4)
+        // Moves 4-10: 90% chance of 2
+        // Moves 11+: 85% chance of 2 (normal difficulty)
+        const moveCount = this.history.length;
+        let prob2;
+        if (moveCount <= 3) prob2 = 0.95;
+        else if (moveCount <= 10) prob2 = 0.90;
+        else prob2 = 0.85;
+
+        this.tiles[randomIndex] = Math.random() < prob2 ? 2 : 4;
     }
 
     checkGameStatus() {
