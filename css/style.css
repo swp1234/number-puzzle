@@ -577,6 +577,46 @@ body {
 }
 
 /* Print Styles */
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark, var(--bg-primary, var(--background, #0f0f23)));
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3498db;
+    border-radius: 5px;
+    border: 2px solid var(--bg-dark, var(--bg-primary, var(--background, #0f0f23)));
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #5cace2;
+    opacity: 0.8;
+}
+
+/* Selection Color */
+::selection {
+    background: #3498db;
+    color: white;
+}
+
+::-moz-selection {
+    background: #3498db;
+    color: white;
+}
+
+/* Focus Visible */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+[role="button"]:focus-visible {
+    outline: 3px solid #3498db;
+    outline-offset: 2px;
+}
+
 @media print {
     .ad-banner, .header-controls, .controls, .instructions, .dopabrain-section {
         display: none;
