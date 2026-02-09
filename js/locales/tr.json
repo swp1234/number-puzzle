@@ -1,0 +1,27 @@
+{
+  "app": {
+    "title": "Sayı Bulmacası 2048",
+    "description": "2048'e ulaşmak için sayıları birleştirin"
+  },
+  "meta": {
+    "description": "Sayı Bulmacası 2048 - Aynı sayıları birleştirerek 2048'e ulaşın. Kaydırma veya ok tuşlarıyla oynayın."
+  },
+  "game": {
+    "score": "Puan",
+    "best": "En İyi",
+    "newGame": "Yeni Oyun",
+    "undo": "Geri Al",
+    "instructions": "Aynı sayıları birleştirerek 2048 yapın!",
+    "controls": "Hareket etmek için ok tuşlarını veya kaydırmayı kullanın.",
+    "gameOver": "Oyun Bitti",
+    "finalScore": "Son Puan",
+    "bestScore": "En İyi Puan",
+    "won": "Kazandınız!",
+    "wonMessage": "Tebrikler! 2048'e ulaştınız!",
+    "continue": "Devam Et",
+    "gameOverMessage": "Daha fazla hamle yok."
+  },
+  "dopabrain": {
+    "title": "Diğer DopaBrain Uygulamalarını Deneyin"
+  }
+}

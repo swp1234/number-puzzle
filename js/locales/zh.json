@@ -1,0 +1,27 @@
+{
+  "app": {
+    "title": "数字拼图2048",
+    "description": "合并数字达到2048"
+  },
+  "meta": {
+    "description": "数字拼图2048 - 合并相同数字达到2048。使用滑动或方向键游玩。"
+  },
+  "game": {
+    "score": "得分",
+    "best": "最高",
+    "newGame": "新游戏",
+    "undo": "撤销",
+    "instructions": "合并相同的数字达到2048!",
+    "controls": "使用方向键或滑动移动。",
+    "gameOver": "游戏结束",
+    "finalScore": "最终得分",
+    "bestScore": "最高分",
+    "won": "你赢了!",
+    "wonMessage": "恭喜！你达到了2048!",
+    "continue": "继续游戏",
+    "gameOverMessage": "没有可用的移动。"
+  },
+  "dopabrain": {
+    "title": "尝试其他DopaBrain应用"
+  }
+}

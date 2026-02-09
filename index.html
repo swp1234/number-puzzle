@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" data-i18n="meta.description">
+    <meta name="theme-color" content="#EDB879">
+    <meta property="og:title" content="Number Puzzle 2048">
+    <meta property="og:description" data-i18n="meta.description">
+    <meta property="og:image" content="https://dopabrain.com/number-puzzle/icon-512.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dopabrain.com/number-puzzle/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Number Puzzle 2048">
+    <meta name="twitter:description" data-i18n="meta.description">
+    <meta name="twitter:image" content="https://dopabrain.com/number-puzzle/icon-512.svg">
+
+    <title data-i18n="app.title">숫자 퍼즐 2048</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icon-192.svg">
+    <link rel="apple-touch-icon" href="icon-192.svg">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Top Ad Banner -->
+    <div id="top-ad-banner" class="ad-banner">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+             data-ad-slot="xxxxxxxx"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-title">
+                <h1 data-i18n="app.title">숫자 퍼즐 2048</h1>
+            </div>
+            <div class="header-controls">
+                <div class="language-selector">
+                    <button id="lang-toggle" class="lang-toggle" title="Change Language">🌐</button>
+                    <div id="lang-menu" class="lang-menu hidden">
+                        <button class="lang-option" data-lang="ko">🇰🇷 한국어</button>
+                        <button class="lang-option" data-lang="en">🇺🇸 English</button>
+                        <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
+                        <button class="lang-option" data-lang="hi">🇮🇳 हिन्दी</button>
+                        <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+                        <button class="lang-option" data-lang="ja">🇯🇵 日本語</button>
+                        <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+                        <button class="lang-option" data-lang="pt">🇧🇷 Português</button>
+                        <button class="lang-option" data-lang="id">🇮🇩 Indonesia</button>
+                        <button class="lang-option" data-lang="tr">🇹🇷 Türkçe</button>
+                        <button class="lang-option" data-lang="de">🇩🇪 Deutsch</button>
+                        <button class="lang-option" data-lang="fr">🇫🇷 Français</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats-panel">
+            <div class="stat-box">
+                <div class="stat-label" data-i18n="game.score">점수</div>
+                <div class="stat-value" id="score">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label" data-i18n="game.best">최고</div>
+                <div class="stat-value" id="best-score">0</div>
+            </div>
+        </div>
+
+        <!-- Game Area -->
+        <div class="game-area" id="game-area">
+            <div class="game-grid" id="game-grid"></div>
+            <div class="game-overlay" id="game-overlay">
+                <div class="overlay-content">
+                    <h2 id="overlay-title"></h2>
+                    <p id="overlay-message"></p>
+                    <button id="overlay-btn" class="btn btn-primary"></button>
+                    <button id="overlay-btn-secondary" class="btn btn-secondary hidden"></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button id="new-game-btn" class="btn btn-primary btn-large" data-i18n="game.newGame">새 게임</button>
+            <button id="undo-btn" class="btn btn-secondary btn-large" data-i18n="game.undo">되돌리기</button>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <p data-i18n="game.instructions">같은 숫자끼리 합쳐서 2048을 만드세요!</p>
+            <p data-i18n="game.controls">화살표 또는 스와이프로 이동합니다.</p>
+        </div>
+
+        <!-- DopaBrain Apps Section -->
+        <div class="dopabrain-section">
+            <h3 class="dopabrain-title" data-i18n="dopabrain.title">다른 DopaBrain 앱도 즐겨보세요</h3>
+            <div class="dopabrain-grid" id="dopabrain-grid">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Ad Banner -->
+    <div id="bottom-ad-banner" class="ad-banner">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+             data-ad-slot="xxxxxxxx"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Interstitial Ad Container (hidden) -->
+    <div id="interstitial-ad" class="interstitial-ad hidden">
+        <div class="interstitial-content">
+            <div class="interstitial-close" id="interstitial-close">×</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+                 data-ad-slot="xxxxxxxx"
+                 data-ad-format="rectangle"
+                 data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000;"></canvas>
+
+    <!-- Scripts -->
+    <script src="js/i18n.js"></script>
+    <script src="js/app.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-xxxxxxxxxxxxxxxx",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(() => {});
+        }
+    </script>
+</body>
+</html>

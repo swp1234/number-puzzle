@@ -1,0 +1,27 @@
+{
+  "app": {
+    "title": "Number Puzzle 2048",
+    "description": "Combine numbers to reach 2048"
+  },
+  "meta": {
+    "description": "Number Puzzle 2048 - Combine tiles to reach 2048. Play with swipe or arrow keys."
+  },
+  "game": {
+    "score": "Score",
+    "best": "Best",
+    "newGame": "New Game",
+    "undo": "Undo",
+    "instructions": "Combine the same numbers to make 2048!",
+    "controls": "Use arrow keys or swipe to move.",
+    "gameOver": "Game Over",
+    "finalScore": "Final Score",
+    "bestScore": "Best Score",
+    "won": "You Won!",
+    "wonMessage": "Congratulations! You reached 2048!",
+    "continue": "Continue",
+    "gameOverMessage": "No more moves available."
+  },
+  "dopabrain": {
+    "title": "Try Other DopaBrain Apps"
+  }
+}

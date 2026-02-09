@@ -1,0 +1,27 @@
+{
+  "app": {
+    "title": "숫자 퍼즐 2048",
+    "description": "같은 숫자를 합쳐서 2048을 만드는 게임"
+  },
+  "meta": {
+    "description": "같은 숫자를 합쳐서 2048을 만드는 숫자 퍼즐 게임입니다. 스와이프와 화살표 키로 플레이하세요."
+  },
+  "game": {
+    "score": "점수",
+    "best": "최고",
+    "newGame": "새 게임",
+    "undo": "되돌리기",
+    "instructions": "같은 숫자끼리 합쳐서 2048을 만드세요!",
+    "controls": "화살표 또는 스와이프로 이동합니다.",
+    "gameOver": "게임 오버",
+    "finalScore": "최종 점수",
+    "bestScore": "최고 점수",
+    "won": "승리!",
+    "wonMessage": "축하합니다! 2048을 달성했습니다!",
+    "continue": "계속하기",
+    "gameOverMessage": "더 이상 이동할 수 없습니다."
+  },
+  "dopabrain": {
+    "title": "다른 DopaBrain 앱도 즐겨보세요"
+  }
+}

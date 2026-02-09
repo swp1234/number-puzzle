@@ -1,0 +1,27 @@
+{
+  "app": {
+    "title": "Quebra-cabeça Numérico 2048",
+    "description": "Combine números para atingir 2048"
+  },
+  "meta": {
+    "description": "Quebra-cabeça Numérico 2048 - Combine números iguais para atingir 2048. Jogue com deslizes ou teclas de seta."
+  },
+  "game": {
+    "score": "Pontuação",
+    "best": "Melhor",
+    "newGame": "Novo Jogo",
+    "undo": "Desfazer",
+    "instructions": "Combine números iguais para fazer 2048!",
+    "controls": "Use as teclas de seta ou deslize para mover.",
+    "gameOver": "Fim do Jogo",
+    "finalScore": "Pontuação Final",
+    "bestScore": "Melhor Pontuação",
+    "won": "Você Venceu!",
+    "wonMessage": "Parabéns! Você atingiu 2048!",
+    "continue": "Continuar",
+    "gameOverMessage": "Sem mais movimentos disponíveis."
+  },
+  "dopabrain": {
+    "title": "Experimente Outros Aplicativos DopaBrain"
+  }
+}
