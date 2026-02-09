@@ -1,25 +1,30 @@
+/**
+ * Service Worker for Number Puzzle Game
+ * Enables offline functionality with advanced caching strategies
+ */
+
 const CACHE_NAME = 'number-puzzle-v1';
 const ASSETS = [
-    '/',
-    '/index.html',
-    '/manifest.json',
-    '/css/style.css',
-    '/js/app.js',
-    '/js/i18n.js',
-    '/js/locales/ko.json',
-    '/js/locales/en.json',
-    '/js/locales/zh.json',
-    '/js/locales/hi.json',
-    '/js/locales/ru.json',
-    '/js/locales/ja.json',
-    '/js/locales/es.json',
-    '/js/locales/pt.json',
-    '/js/locales/id.json',
-    '/js/locales/tr.json',
-    '/js/locales/de.json',
-    '/js/locales/fr.json',
-    '/icon-192.svg',
-    '/icon-512.svg'
+    './',
+    './index.html',
+    './manifest.json',
+    './css/style.css',
+    './js/app.js',
+    './js/i18n.js',
+    './js/locales/ko.json',
+    './js/locales/en.json',
+    './js/locales/zh.json',
+    './js/locales/hi.json',
+    './js/locales/ru.json',
+    './js/locales/ja.json',
+    './js/locales/es.json',
+    './js/locales/pt.json',
+    './js/locales/id.json',
+    './js/locales/tr.json',
+    './js/locales/de.json',
+    './js/locales/fr.json',
+    './icon-192.svg',
+    './icon-512.svg'
 ];
 
 // Install event
