@@ -45,49 +45,70 @@ class Game2048 {
         let touchStartY = 0;
 
         document.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-            touchStartY = e.touches[0].clientY;
+            if (e.touches && e.touches[0]) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            }
         }, false);
 
         document.addEventListener('touchend', (e) => {
-            const touchEndX = e.changedTouches[0].clientX;
-            const touchEndY = e.changedTouches[0].clientY;
-            this.handleSwipe(touchStartX, touchStartY, touchEndX, touchEndY);
+            if (e.changedTouches && e.changedTouches[0]) {
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
+                this.handleSwipe(touchStartX, touchStartY, touchEndX, touchEndY);
+            }
         }, false);
 
-        // Buttons
-        document.getElementById('new-game-btn').addEventListener('click', () => this.newGame());
-        document.getElementById('undo-btn').addEventListener('click', () => this.undo());
+        // Buttons (safe DOM access)
+        const newGameBtn = document.getElementById('new-game-btn');
+        const undoBtn = document.getElementById('undo-btn');
+        const langToggle = document.getElementById('lang-toggle');
+        const langMenu = document.getElementById('lang-menu');
+        const overlayBtn = document.getElementById('overlay-btn');
+        const overlayBtnSecondary = document.getElementById('overlay-btn-secondary');
+        const interstitialClose = document.getElementById('interstitial-close');
+        const interstitialAd = document.getElementById('interstitial-ad');
+
+        if (newGameBtn) newGameBtn.addEventListener('click', () => this.newGame());
+        if (undoBtn) undoBtn.addEventListener('click', () => this.undo());
 
         // Language selector
-        document.getElementById('lang-toggle').addEventListener('click', () => {
-            document.getElementById('lang-menu').classList.toggle('hidden');
-        });
+        if (langToggle) {
+            langToggle.addEventListener('click', () => {
+                if (langMenu) langMenu.classList.toggle('hidden');
+            });
+        }
 
         document.querySelectorAll('.lang-option').forEach(btn => {
             btn.addEventListener('click', async (e) => {
                 const lang = e.target.getAttribute('data-lang');
                 await i18n.setLanguage(lang);
                 this.updateLanguageUI();
-                document.getElementById('lang-menu').classList.add('hidden');
+                if (langMenu) langMenu.classList.add('hidden');
                 this.render(); // Re-render with new language
             });
         });
 
         // Overlay buttons
-        document.getElementById('overlay-btn').addEventListener('click', () => {
-            this.hideOverlay();
-            this.newGame();
-        });
+        if (overlayBtn) {
+            overlayBtn.addEventListener('click', () => {
+                this.hideOverlay();
+                this.newGame();
+            });
+        }
 
-        document.getElementById('overlay-btn-secondary').addEventListener('click', () => {
-            this.hideOverlay();
-        });
+        if (overlayBtnSecondary) {
+            overlayBtnSecondary.addEventListener('click', () => {
+                this.hideOverlay();
+            });
+        }
 
         // Interstitial close
-        document.getElementById('interstitial-close').addEventListener('click', () => {
-            document.getElementById('interstitial-ad').classList.add('hidden');
-        });
+        if (interstitialClose) {
+            interstitialClose.addEventListener('click', () => {
+                if (interstitialAd) interstitialAd.classList.add('hidden');
+            });
+        }
     }
 
     updateLanguageUI() {
@@ -468,14 +489,27 @@ class Game2048 {
     }
 
     loadBestScore() {
-        const saved = localStorage.getItem('bestScore-2048');
-        return saved ? parseInt(saved, 10) : 0;
+        try {
+            if (typeof localStorage === 'undefined') return 0;
+            const saved = localStorage.getItem('bestScore-2048');
+            const parsed = saved ? parseInt(saved, 10) : 0;
+            return isNaN(parsed) ? 0 : parsed;
+        } catch (e) {
+            console.warn('Could not load best score:', e.message);
+            return 0;
+        }
     }
 
     updateBestScore() {
         if (this.score > this.bestScore) {
             this.bestScore = this.score;
-            localStorage.setItem('bestScore-2048', this.bestScore);
+            try {
+                if (typeof localStorage !== 'undefined') {
+                    localStorage.setItem('bestScore-2048', this.bestScore.toString());
+                }
+            } catch (e) {
+                console.warn('Could not save best score:', e.message);
+            }
         }
     }
 
