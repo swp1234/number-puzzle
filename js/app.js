@@ -555,5 +555,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         const game = new Game2048();
         window.game = game; // For debugging
+
+        // Hide app loader
+        const loader = document.getElementById('app-loader');
+        if (loader) {
+            loader.classList.add('hidden');
+            setTimeout(() => loader.remove(), 300);
+        }
     }, 100);
 });
