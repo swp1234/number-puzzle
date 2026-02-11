@@ -1,3 +1,18 @@
+// Theme toggle functionality
+const themeToggle = document.getElementById('theme-toggle');
+if (themeToggle) {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'light' ? '🌙' : '☀️';
+    themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        themeToggle.textContent = next === 'light' ? '🌙' : '☀️';
+    });
+}
+
 class Game2048 {
     constructor() {
         this.gridSize = 4;
@@ -551,16 +566,27 @@ class Game2048 {
 }
 
 // Initialize game when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        const game = new Game2048();
-        window.game = game; // For debugging
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Wait for i18n if available
+        if (typeof i18n !== 'undefined' && i18n.loadTranslations) {
+            try {
+                await i18n.loadTranslations(i18n.currentLang);
+                i18n.updateUI();
+            } catch (e) {
+                console.warn('i18n load failed:', e);
+            }
+        }
 
-        // Hide app loader
+        const game = new Game2048();
+        window.game = game;
+    } catch (e) {
+        console.error('Game init error:', e);
+    } finally {
         const loader = document.getElementById('app-loader');
         if (loader) {
             loader.classList.add('hidden');
             setTimeout(() => loader.remove(), 300);
         }
-    }, 100);
+    }
 });
