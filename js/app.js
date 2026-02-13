@@ -195,6 +195,13 @@ class Game2048 {
     }
 
     move(direction) {
+        // GA4 engagement on first move
+        if (!this._engageFired) {
+            this._engageFired = true;
+            if (typeof gtag === 'function') {
+                gtag('event', 'engagement', { event_category: 'number_puzzle', event_label: 'first_interaction' });
+            }
+        }
         this.saveHistory();
 
         const oldTiles = [...this.tiles];
@@ -580,6 +587,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const game = new Game2048();
         window.game = game;
+
+        // GA4 engagement tracking
+        let scrollFired = false;
+        window.addEventListener('scroll', function() {
+            if (!scrollFired && window.scrollY > 100) {
+                scrollFired = true;
+                if (typeof gtag === 'function') gtag('event', 'scroll_engagement', { engagement_type: 'scroll' });
+            }
+        }, { passive: true });
+        setTimeout(function() {
+            if (typeof gtag === 'function') gtag('event', 'timer_engagement', { engagement_time_msec: 5000 });
+        }, 5000);
     } catch (e) {
         console.error('Game init error:', e);
     } finally {

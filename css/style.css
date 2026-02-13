@@ -440,6 +440,18 @@ body {
     min-width: 140px;
 }
 
+/* CTA pulse animation */
+@keyframes ctaPulse {
+    0%, 100% { box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3); }
+    50% { box-shadow: 0 4px 30px rgba(39, 174, 96, 0.6), 0 0 60px rgba(39, 174, 96, 0.2); }
+}
+.btn-cta-pulse {
+    animation: ctaPulse 2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+    .btn-cta-pulse { animation: none !important; }
+}
+
 .btn.hidden {
     display: none;
 }
