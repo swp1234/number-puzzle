@@ -377,6 +377,7 @@ class Game2048 {
         if (!this.canMove()) {
             this.gameOver = true;
             this.updateBestScore();
+            if (typeof DailyStreak !== 'undefined') DailyStreak.report(this.score);
             this.showGameOverOverlay();
         }
     }
@@ -617,6 +618,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const game = new Game2048();
         window.game = game;
+        if (typeof DailyStreak !== 'undefined') DailyStreak.init({ gameId: 'number-puzzle', bestScoreKey: 'bestScore-2048', minTarget: 100 });
 
         // GA4 engagement tracking
         let scrollFired = false;
