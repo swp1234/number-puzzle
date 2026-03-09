@@ -306,6 +306,11 @@ class Game2048 {
             if (merged[i] === merged[i + 1]) {
                 merged[i] *= 2;
                 this.score += merged[i];
+                // Visual feedback for big merges
+                if (merged[i] >= 128) {
+                    this.shakeGrid(merged[i] >= 512 ? 6 : 3);
+                }
+                this.showFloatingScore('+' + merged[i], merged[i] >= 256 ? '#e74c3c' : '#f39c12');
                 merged.splice(i + 1, 1);
             }
         }
@@ -316,6 +321,28 @@ class Game2048 {
         }
 
         return merged;
+    }
+
+    shakeGrid(intensity = 4) {
+        const grid = document.getElementById('game-grid');
+        if (!grid) return;
+        grid.style.animation = `np-shake ${intensity > 4 ? 0.4 : 0.25}s ease`;
+        setTimeout(() => { grid.style.animation = ''; }, 500);
+    }
+
+    showFloatingScore(text, color = '#f39c12') {
+        const grid = document.getElementById('game-grid');
+        if (!grid) return;
+        const rect = grid.getBoundingClientRect();
+        const el = document.createElement('div');
+        el.textContent = text;
+        el.style.cssText = `position:fixed;left:${rect.left + rect.width/2}px;top:${rect.top + rect.height/2}px;transform:translateX(-50%);font-size:24px;font-weight:bold;color:${color};z-index:9999;pointer-events:none;text-shadow:0 0 10px ${color}40;opacity:1;transition:all 0.8s ease-out;`;
+        document.body.appendChild(el);
+        requestAnimationFrame(() => {
+            el.style.top = (rect.top + rect.height/2 - 50) + 'px';
+            el.style.opacity = '0';
+        });
+        setTimeout(() => el.remove(), 900);
     }
 
     addNewTile() {
@@ -571,6 +598,9 @@ class Game2048 {
         }
     }
 }
+
+// Shake animation CSS
+(function(){const s=document.createElement('style');s.textContent='@keyframes np-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}';document.head.appendChild(s);})();
 
 // Initialize game when DOM is ready
 document.addEventListener('DOMContentLoaded', async () => {
