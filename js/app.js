@@ -491,23 +491,31 @@ class Game2048 {
     }
 
     showGameOverOverlay() {
-        const overlay = document.getElementById('game-overlay');
-        const title = document.getElementById('overlay-title');
-        const message = document.getElementById('overlay-message');
-        const btn = document.getElementById('overlay-btn');
-        const btnSecondary = document.getElementById('overlay-btn-secondary');
+        const showOverlay = () => {
+            const overlay = document.getElementById('game-overlay');
+            const title = document.getElementById('overlay-title');
+            const message = document.getElementById('overlay-message');
+            const btn = document.getElementById('overlay-btn');
+            const btnSecondary = document.getElementById('overlay-btn-secondary');
 
-        title.textContent = i18n.t('game.gameOver');
-        message.innerHTML = `${i18n.t('game.finalScore')}: <strong>${this.score}</strong><br>${i18n.t('game.bestScore')}: <strong>${this.bestScore}</strong>`;
-        btn.textContent = i18n.t('game.newGame');
-        btnSecondary.classList.add('hidden');
+            title.textContent = i18n.t('game.gameOver');
+            message.innerHTML = `${i18n.t('game.finalScore')}: <strong>${this.score}</strong><br>${i18n.t('game.bestScore')}: <strong>${this.bestScore}</strong>`;
+            btn.textContent = i18n.t('game.newGame');
+            btnSecondary.classList.add('hidden');
 
-        btn.onclick = () => {
-            this.hideOverlay();
-            this.newGame();
+            btn.onclick = () => {
+                this.hideOverlay();
+                this.newGame();
+            };
+
+            overlay.classList.add('show');
         };
 
-        overlay.classList.add('show');
+        if (typeof GameAds !== 'undefined') {
+            GameAds.showInterstitial({ onComplete: () => { showOverlay(); } });
+        } else {
+            showOverlay();
+        }
     }
 
     hideOverlay() {
@@ -679,6 +687,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const game = new Game2048();
         window.game = game;
         if (typeof DailyStreak !== 'undefined') DailyStreak.init({ gameId: 'number-puzzle', bestScoreKey: 'bestScore-2048', minTarget: 100 });
+        if (typeof GameAds !== 'undefined') GameAds.init();
 
         // GA4 engagement tracking
         let scrollFired = false;
