@@ -40,12 +40,25 @@ class Game2048 {
         this.initializeAnalytics();
     }
 
-    init() {
+    init(fresh = false) {
+        if (!fresh) {
+            const saved = this.loadGameState();
+            if (saved) {
+                this.tiles = saved.tiles;
+                this.score = saved.score;
+                this.gameOver = saved.gameOver || false;
+                this.won = saved.won || false;
+                this.history = [];
+                this.render();
+                return;
+            }
+        }
         this.tiles = Array(this.gridSize * this.gridSize).fill(0);
         this.score = 0;
         this.gameOver = false;
         this.won = false;
         this.history = [];
+        this.clearGameState();
         this.addNewTile();
         this.addNewTile();
         this.render();
@@ -230,6 +243,7 @@ class Game2048 {
         this.addNewTile();
         this.checkGameStatus();
         this.render();
+        this.saveGameState();
 
         // Check for interstitial ad
         this.interstitialCount++;
@@ -380,6 +394,7 @@ class Game2048 {
         if (!this.canMove()) {
             this.gameOver = true;
             this.updateBestScore();
+            this.clearGameState();
             if (typeof Haptic !== 'undefined') Haptic.heavy();
             if (typeof DailyStreak !== 'undefined') DailyStreak.report(this.score);
             this.showGameOverOverlay();
@@ -549,7 +564,8 @@ class Game2048 {
     }
 
     newGame() {
-        this.init();
+        this.clearGameState();
+        this.init(true);
     }
 
     loadBestScore() {
@@ -561,6 +577,46 @@ class Game2048 {
         } catch (e) {
             console.warn('Could not load best score:', e.message);
             return 0;
+        }
+    }
+
+    saveGameState() {
+        try {
+            if (typeof localStorage === 'undefined') return;
+            localStorage.setItem('numberPuzzle_gameState', JSON.stringify({
+                tiles: this.tiles,
+                score: this.score,
+                gameOver: this.gameOver,
+                won: this.won
+            }));
+        } catch (e) {
+            console.warn('Could not save game state:', e.message);
+        }
+    }
+
+    loadGameState() {
+        try {
+            if (typeof localStorage === 'undefined') return null;
+            const saved = localStorage.getItem('numberPuzzle_gameState');
+            if (!saved) return null;
+            const state = JSON.parse(saved);
+            if (state && Array.isArray(state.tiles) && state.tiles.length === this.gridSize * this.gridSize) {
+                return state;
+            }
+            return null;
+        } catch (e) {
+            console.warn('Could not load game state:', e.message);
+            return null;
+        }
+    }
+
+    clearGameState() {
+        try {
+            if (typeof localStorage !== 'undefined') {
+                localStorage.removeItem('numberPuzzle_gameState');
+            }
+        } catch (e) {
+            console.warn('Could not clear game state:', e.message);
         }
     }
 
