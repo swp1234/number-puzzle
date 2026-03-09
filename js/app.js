@@ -504,11 +504,26 @@ class Game2048 {
             btnSecondary.classList.add('hidden');
 
             btn.onclick = () => {
+                if (typeof GameAds !== 'undefined') GameAds.removeRewardButton('#game-overlay');
                 this.hideOverlay();
                 this.newGame();
             };
 
             overlay.classList.add('show');
+
+            // Rewarded ad — watch ad for 2x score
+            if (typeof GameAds !== 'undefined') {
+                GameAds.injectRewardButton({
+                    container: '#game-overlay',
+                    label: 'Watch Ad for 2x Score',
+                    onReward: () => {
+                        this.score *= 2;
+                        this.updateBestScore();
+                        this.renderStats();
+                        message.innerHTML = `${i18n.t('game.finalScore')}: <strong>${this.score}</strong><br>${i18n.t('game.bestScore')}: <strong>${this.bestScore}</strong>`;
+                    }
+                });
+            }
         };
 
         if (typeof GameAds !== 'undefined') {
