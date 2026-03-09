@@ -310,6 +310,9 @@ class Game2048 {
                 if (merged[i] >= 128) {
                     this.shakeGrid(merged[i] >= 512 ? 6 : 3);
                 }
+                if (typeof Haptic !== 'undefined') {
+                    if (merged[i] >= 256) Haptic.medium(); else Haptic.light();
+                }
                 this.showFloatingScore('+' + merged[i], merged[i] >= 256 ? '#e74c3c' : '#f39c12');
                 merged.splice(i + 1, 1);
             }
@@ -377,6 +380,7 @@ class Game2048 {
         if (!this.canMove()) {
             this.gameOver = true;
             this.updateBestScore();
+            if (typeof Haptic !== 'undefined') Haptic.heavy();
             if (typeof DailyStreak !== 'undefined') DailyStreak.report(this.score);
             this.showGameOverOverlay();
         }
