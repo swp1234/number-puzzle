@@ -3,13 +3,14 @@
  * Enables offline functionality with advanced caching strategies
  */
 
-const CACHE_NAME = 'number-puzzle-v2';
+const CACHE_NAME = 'number-puzzle-v3';
 const ASSETS = [
     './',
     './index.html',
     './manifest.json',
     './css/style.css',
     './js/app.js',
+    './js/sound-engine.js',
     './js/i18n.js',
     './js/locales/ko.json',
     './js/locales/en.json',

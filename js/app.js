@@ -225,6 +225,7 @@ class Game2048 {
         if (this.history.length === 0) return;
 
         const state = this.history.pop();
+        if (window.sfx) window.sfx.play('undo');
         this.tiles = state.tiles;
         this.score = state.score;
         this.gameOver = false;
@@ -242,6 +243,7 @@ class Game2048 {
         this.saveHistory();
 
         const oldTiles = [...this.tiles];
+        if (window.sfx) window.sfx.play('slide');
 
         switch (direction) {
             case 'left':
@@ -354,6 +356,8 @@ class Game2048 {
                 mergedThisLine = true;
                 this.comboCount++;
 
+                if (window.sfx) window.sfx.play(merged[i] >= 256 ? 'bigmerge' : 'merge');
+
                 // Visual feedback for big merges
                 if (merged[i] >= 128) {
                     this.shakeGrid(merged[i] >= 512 ? 6 : 3);
@@ -367,6 +371,7 @@ class Game2048 {
 
                 // Combo display (2x and above)
                 if (this.comboCount >= 2) {
+                    if (window.sfx) window.sfx.play('combo');
                     setTimeout(() => {
                         this.showFloatingScore(this.comboCount + 'x COMBO', '#9b59b6');
                     }, 150);
@@ -377,6 +382,7 @@ class Game2048 {
                     this.newBestShown = true;
                     this.updateBestScore();
                     this.showNewBestFlash();
+                    if (window.sfx) window.sfx.play('newbest');
                 }
 
                 merged.splice(i + 1, 1);
@@ -448,6 +454,7 @@ class Game2048 {
         else prob2 = 0.85;
 
         this.tiles[randomIndex] = Math.random() < prob2 ? 2 : 4;
+        if (window.sfx) window.sfx.play('newtile');
     }
 
     checkGameStatus() {
@@ -462,6 +469,7 @@ class Game2048 {
             this.gameOver = true;
             this.updateBestScore();
             this.clearGameState();
+            if (window.sfx) window.sfx.play('gameover');
             if (typeof Haptic !== 'undefined') Haptic.heavy();
             if (typeof DailyStreak !== 'undefined') DailyStreak.report(this.score);
             this.showGameOverOverlay();
@@ -555,6 +563,7 @@ class Game2048 {
         overlay.classList.add('show');
 
         this.playConfetti();
+        if (window.sfx) window.sfx.play('win');
     }
 
     showGameOverOverlay() {
