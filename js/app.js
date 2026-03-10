@@ -22,6 +22,9 @@ class Game2048 {
         this.gameOver = false;
         this.won = false;
         this.history = [];
+        this.comboCount = 0;
+        this.lastMergeScore = 0;
+        this.newBestShown = false;
         this.interstitialCount = 0;
         this.dopabrainApps = [
             { name: 'Quiz', emoji: '🎯', url: '/projects/quiz-app' },
@@ -58,6 +61,8 @@ class Game2048 {
         this.gameOver = false;
         this.won = false;
         this.history = [];
+        this.comboCount = 0;
+        this.newBestShown = false;
         this.clearGameState();
         this.addNewTile();
         this.addNewTile();
@@ -259,6 +264,12 @@ class Game2048 {
             return;
         }
 
+        // Reset combo if no merges happened this move
+        const oldScore = this.history[this.history.length - 1]?.score || 0;
+        if (this.score === oldScore) {
+            this.comboCount = 0;
+        }
+
         this.addNewTile();
         this.checkGameStatus();
         this.render();
@@ -333,12 +344,16 @@ class Game2048 {
     mergeLine(line) {
         // Compress (remove zeros)
         let merged = line.filter(val => val !== 0);
+        let mergedThisLine = false;
 
         // Merge
         for (let i = 0; i < merged.length - 1; i++) {
             if (merged[i] === merged[i + 1]) {
                 merged[i] *= 2;
                 this.score += merged[i];
+                mergedThisLine = true;
+                this.comboCount++;
+
                 // Visual feedback for big merges
                 if (merged[i] >= 128) {
                     this.shakeGrid(merged[i] >= 512 ? 6 : 3);
@@ -346,7 +361,24 @@ class Game2048 {
                 if (typeof Haptic !== 'undefined') {
                     if (merged[i] >= 256) Haptic.medium(); else Haptic.light();
                 }
+
+                // Floating score popup
                 this.showFloatingScore('+' + merged[i], merged[i] >= 256 ? '#e74c3c' : '#f39c12');
+
+                // Combo display (2x and above)
+                if (this.comboCount >= 2) {
+                    setTimeout(() => {
+                        this.showFloatingScore(this.comboCount + 'x COMBO', '#9b59b6');
+                    }, 150);
+                }
+
+                // NEW BEST flash
+                if (this.score > this.bestScore && !this.newBestShown) {
+                    this.newBestShown = true;
+                    this.updateBestScore();
+                    this.showNewBestFlash();
+                }
+
                 merged.splice(i + 1, 1);
             }
         }
@@ -379,6 +411,22 @@ class Game2048 {
             el.style.opacity = '0';
         });
         setTimeout(() => el.remove(), 900);
+    }
+
+    showNewBestFlash() {
+        const flash = document.createElement('div');
+        flash.textContent = 'NEW BEST!';
+        flash.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.5);font-size:36px;font-weight:900;color:#FFD700;z-index:9999;pointer-events:none;text-shadow:0 0 20px rgba(255,215,0,0.6),0 2px 4px rgba(0,0,0,0.5);opacity:0;transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);';
+        document.body.appendChild(flash);
+        requestAnimationFrame(() => {
+            flash.style.opacity = '1';
+            flash.style.transform = 'translate(-50%,-50%) scale(1)';
+        });
+        setTimeout(() => {
+            flash.style.opacity = '0';
+            flash.style.transform = 'translate(-50%,-50%) scale(1.2)';
+        }, 1200);
+        setTimeout(() => flash.remove(), 1700);
     }
 
     addNewTile() {
