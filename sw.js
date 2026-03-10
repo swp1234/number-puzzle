@@ -3,7 +3,7 @@
  * Enables offline functionality with advanced caching strategies
  */
 
-const CACHE_NAME = 'number-puzzle-v1';
+const CACHE_NAME = 'number-puzzle-v2';
 const ASSETS = [
     './',
     './index.html',
