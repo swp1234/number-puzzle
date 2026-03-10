@@ -472,6 +472,11 @@ class Game2048 {
             if (window.sfx) window.sfx.play('gameover');
             if (typeof Haptic !== 'undefined') Haptic.heavy();
             if (typeof DailyStreak !== 'undefined') DailyStreak.report(this.score);
+            if (typeof GameAchievements !== 'undefined') GameAchievements.report({
+                bestScore: this.bestScore,
+                totalGames: parseInt(localStorage.getItem('numberPuzzle_totalGames') || '0', 10) + 1,
+                bestCombo: this.comboCount
+            });
             this.showGameOverOverlay();
         }
     }
@@ -664,6 +669,14 @@ class Game2048 {
 
     newGame() {
         this.clearGameState();
+        try {
+            if (typeof localStorage !== 'undefined') {
+                const totalGames = parseInt(localStorage.getItem('numberPuzzle_totalGames') || '0', 10);
+                localStorage.setItem('numberPuzzle_totalGames', (totalGames + 1).toString());
+            }
+        } catch (e) {
+            console.warn('Could not update game count:', e.message);
+        }
         this.init(true);
     }
 
@@ -779,6 +792,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.game = game;
         if (typeof DailyStreak !== 'undefined') DailyStreak.init({ gameId: 'number-puzzle', bestScoreKey: 'bestScore-2048', minTarget: 100 });
         if (typeof GameAds !== 'undefined') GameAds.init();
+        if (typeof GameAchievements !== 'undefined') GameAchievements.init({
+            gameId: 'number-puzzle',
+            defs: [
+                { id: 'score_500', stat: 'bestScore', target: 500, icon: '⭐', name: 'Number Novice' },
+                { id: 'score_2000', stat: 'bestScore', target: 2000, icon: '🏆', name: 'Number Master' },
+                { id: 'score_5000', stat: 'bestScore', target: 5000, icon: '👑', name: 'Number Legend' },
+                { id: 'games_10', stat: 'totalGames', target: 10, icon: '🎮', name: 'Regular Player' },
+                { id: 'games_50', stat: 'totalGames', target: 50, icon: '🔥', name: 'Dedicated' },
+                { id: 'combo_5', stat: 'bestCombo', target: 5, icon: '💥', name: 'Combo King' }
+            ]
+        });
 
         // GA4 engagement tracking
         let scrollFired = false;
