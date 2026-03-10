@@ -19,7 +19,8 @@
     "won": "승리!",
     "wonMessage": "축하합니다! 2048을 달성했습니다!",
     "continue": "계속하기",
-    "gameOverMessage": "더 이상 이동할 수 없습니다."
+    "gameOverMessage": "더 이상 이동할 수 없습니다.",
+    "shareScore": "점수 공유"
   },
   "dopabrain": {
     "title": "다른 DopaBrain 앱도 즐겨보세요"

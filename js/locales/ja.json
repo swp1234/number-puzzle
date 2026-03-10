@@ -19,7 +19,8 @@
     "won": "成功!",
     "wonMessage": "おめでとうございます! 2048に達しました!",
     "continue": "続ける",
-    "gameOverMessage": "これ以上の移動はできません。"
+    "gameOverMessage": "これ以上の移動はできません。",
+    "shareScore": "スコア共有"
   },
   "dopabrain": {
     "title": "他のDopaBrainアプリも試してみてください"

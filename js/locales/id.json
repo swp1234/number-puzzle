@@ -19,7 +19,8 @@
     "won": "Anda Menang!",
     "wonMessage": "Selamat! Anda mencapai 2048!",
     "continue": "Lanjutkan",
-    "gameOverMessage": "Tidak ada lagi gerakan yang tersedia."
+    "gameOverMessage": "Tidak ada lagi gerakan yang tersedia.",
+    "shareScore": "Bagikan Skor"
   },
   "dopabrain": {
     "title": "Coba Aplikasi DopaBrain Lainnya"

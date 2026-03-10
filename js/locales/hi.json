@@ -19,7 +19,8 @@
     "won": "आप जीत गए!",
     "wonMessage": "बधाई! आप 2048 तक पहुंच गए!",
     "continue": "जारी रखें",
-    "gameOverMessage": "कोई और कदम उपलब्ध नहीं है।"
+    "gameOverMessage": "कोई और कदम उपलब्ध नहीं है।",
+    "shareScore": "स्कोर शेयर"
   },
   "dopabrain": {
     "title": "अन्य DopaBrain ऐप्स आजमाएं"

@@ -19,7 +19,8 @@
     "won": "你赢了!",
     "wonMessage": "恭喜！你达到了2048!",
     "continue": "继续游戏",
-    "gameOverMessage": "没有可用的移动。"
+    "gameOverMessage": "没有可用的移动。",
+    "shareScore": "分享分数"
   },
   "dopabrain": {
     "title": "尝试其他DopaBrain应用"

@@ -19,7 +19,8 @@
     "won": "You Won!",
     "wonMessage": "Congratulations! You reached 2048!",
     "continue": "Continue",
-    "gameOverMessage": "No more moves available."
+    "gameOverMessage": "No more moves available.",
+    "shareScore": "Share Score"
   },
   "dopabrain": {
     "title": "Try Other DopaBrain Apps"

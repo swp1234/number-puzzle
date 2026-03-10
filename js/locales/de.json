@@ -19,7 +19,8 @@
     "won": "Du hast gewonnen!",
     "wonMessage": "Glückwunsch! Du hast 2048 erreicht!",
     "continue": "Fortfahren",
-    "gameOverMessage": "Keine weiteren Züge verfügbar."
+    "gameOverMessage": "Keine weiteren Züge verfügbar.",
+    "shareScore": "Teilen"
   },
   "dopabrain": {
     "title": "Probieren Sie andere DopaBrain-Apps aus"

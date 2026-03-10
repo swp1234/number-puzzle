@@ -19,7 +19,8 @@
     "won": "Kazandınız!",
     "wonMessage": "Tebrikler! 2048'e ulaştınız!",
     "continue": "Devam Et",
-    "gameOverMessage": "Daha fazla hamle yok."
+    "gameOverMessage": "Daha fazla hamle yok.",
+    "shareScore": "Puanı Paylaş"
   },
   "dopabrain": {
     "title": "Diğer DopaBrain Uygulamalarını Deneyin"

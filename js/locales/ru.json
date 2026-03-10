@@ -19,7 +19,8 @@
     "won": "Вы выиграли!",
     "wonMessage": "Поздравляем! Вы достигли 2048!",
     "continue": "Продолжить",
-    "gameOverMessage": "Больше нет доступных ходов."
+    "gameOverMessage": "Больше нет доступных ходов.",
+    "shareScore": "Поделиться"
   },
   "dopabrain": {
     "title": "Попробуйте другие приложения DopaBrain"

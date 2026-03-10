@@ -19,7 +19,8 @@
     "won": "Você Venceu!",
     "wonMessage": "Parabéns! Você atingiu 2048!",
     "continue": "Continuar",
-    "gameOverMessage": "Sem mais movimentos disponíveis."
+    "gameOverMessage": "Sem mais movimentos disponíveis.",
+    "shareScore": "Compartilhar"
   },
   "dopabrain": {
     "title": "Experimente Outros Aplicativos DopaBrain"
