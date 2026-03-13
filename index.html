@@ -253,17 +253,15 @@
         }
     </script>
     <div id="share-float" style="position:fixed;bottom:80px;right:16px;z-index:99"><button onclick="(async()=>{const u=location.href,t=document.title;if(typeof gtag==='function')gtag('event','share',{method:navigator.share?'native':'clipboard',app_name:'number-puzzle'});if(navigator.share){try{await navigator.share({title:t,url:u})}catch(e){}}else{await navigator.clipboard.writeText(u);this.textContent='✅';setTimeout(()=>this.textContent='📤',1500)}})()" style="width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:20px;cursor:pointer;backdrop-filter:blur(8px)">📤</button></div>
-        <!-- Related Games (SEO Internal Links) -->
-    <section class="related-games" style="margin:20px auto;padding:16px;max-width:480px;background:rgba(255,255,255,0.05);border-radius:12px;">
-      <p style="font-size:13px;color:#aaa;margin:0 0 8px 0;font-weight:600;">More Free Games</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <a href="/puzzle-2048/" style="padding:6px 12px;background:rgba(255,255,255,0.08);border-radius:8px;text-decoration:none;color:inherit;font-size:13px;">🔢 2048 Puzzle</a>
-        <a href="/block-puzzle/" style="padding:6px 12px;background:rgba(255,255,255,0.08);border-radius:8px;text-decoration:none;color:inherit;font-size:13px;">🧩 Block Puzzle</a>
-        <a href="/minesweeper/" style="padding:6px 12px;background:rgba(255,255,255,0.08);border-radius:8px;text-decoration:none;color:inherit;font-size:13px;">💣 Minesweeper</a>
-        <a href="/emoji-merge/" style="padding:6px 12px;background:rgba(255,255,255,0.08);border-radius:8px;text-decoration:none;color:inherit;font-size:13px;">✨ Emoji Merge</a>
-        <a href="/word-scramble/" style="padding:6px 12px;background:rgba(255,255,255,0.08);border-radius:8px;text-decoration:none;color:inherit;font-size:13px;">📝 Word Scramble</a>
+    <div style="max-width:420px;margin:20px auto;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);">
+      <h3 data-i18n="related.title" style="font-size:16px;color:#a0a0b8;margin-bottom:12px;text-align:center;">More to Explore</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <a href="/puzzle-2048/" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;text-decoration:none;color:#fff;"><span style="font-size:28px;">🧩</span><span data-i18n="related.puzzle2048" style="font-size:12px;font-weight:600;color:#a0a0b8;">Puzzle 2048</span></a>
+        <a href="/block-puzzle/" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;text-decoration:none;color:#fff;"><span style="font-size:28px;">📦</span><span data-i18n="related.blockPuzzle" style="font-size:12px;font-weight:600;color:#a0a0b8;">Block Puzzle</span></a>
+        <a href="/minesweeper/" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;text-decoration:none;color:#fff;"><span style="font-size:28px;">💣</span><span data-i18n="related.minesweeper" style="font-size:12px;font-weight:600;color:#a0a0b8;">Minesweeper</span></a>
+        <a href="/memory-card/" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;text-decoration:none;color:#fff;"><span style="font-size:28px;">🃏</span><span data-i18n="related.memoryCard" style="font-size:12px;font-weight:600;color:#a0a0b8;">Memory Card</span></a>
       </div>
-    </section>
+    </div>
     <script src="/portal/js/cross-promo.js" defer></script>
 </body>
 </html>

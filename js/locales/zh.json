@@ -24,5 +24,12 @@
   },
   "dopabrain": {
     "title": "尝试其他DopaBrain应用"
+  },
+  "related": {
+    "title": "更多探索",
+    "puzzle2048": "2048拼图",
+    "blockPuzzle": "方块拼图",
+    "minesweeper": "扫雷",
+    "memoryCard": "记忆卡片"
   }
 }

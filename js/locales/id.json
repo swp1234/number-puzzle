@@ -24,5 +24,12 @@
   },
   "dopabrain": {
     "title": "Coba Aplikasi DopaBrain Lainnya"
+  },
+  "related": {
+    "title": "Jelajahi lainnya",
+    "puzzle2048": "Puzzle 2048",
+    "blockPuzzle": "Puzzle Blok",
+    "minesweeper": "Penyapu Ranjau",
+    "memoryCard": "Kartu Memori"
   }
 }

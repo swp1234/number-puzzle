@@ -24,5 +24,12 @@
   },
   "dopabrain": {
     "title": "Probieren Sie andere DopaBrain-Apps aus"
+  },
+  "related": {
+    "title": "Mehr entdecken",
+    "puzzle2048": "Puzzle 2048",
+    "blockPuzzle": "Block-Puzzle",
+    "minesweeper": "Minesweeper",
+    "memoryCard": "Memory-Karten"
   }
 }

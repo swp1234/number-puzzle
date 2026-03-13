@@ -24,5 +24,12 @@
   },
   "dopabrain": {
     "title": "Попробуйте другие приложения DopaBrain"
+  },
+  "related": {
+    "title": "Ещё игры",
+    "puzzle2048": "Пазл 2048",
+    "blockPuzzle": "Блок-пазл",
+    "minesweeper": "Сапёр",
+    "memoryCard": "Карты памяти"
   }
 }

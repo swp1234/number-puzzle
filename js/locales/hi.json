@@ -24,5 +24,12 @@
   },
   "dopabrain": {
     "title": "अन्य DopaBrain ऐप्स आजमाएं"
+  },
+  "related": {
+    "title": "और खेलें",
+    "puzzle2048": "पज़ल 2048",
+    "blockPuzzle": "ब्लॉक पज़ल",
+    "minesweeper": "माइनस्वीपर",
+    "memoryCard": "मेमोरी कार्ड"
   }
 }

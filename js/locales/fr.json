@@ -24,5 +24,12 @@
   },
   "dopabrain": {
     "title": "Essayez d'autres applications DopaBrain"
+  },
+  "related": {
+    "title": "À découvrir",
+    "puzzle2048": "Puzzle 2048",
+    "blockPuzzle": "Puzzle de Blocs",
+    "minesweeper": "Démineur",
+    "memoryCard": "Carte Mémoire"
   }
 }
