@@ -42,13 +42,9 @@
     <meta name="twitter:site" content="@dopabrain">
     <link rel="canonical" href="https://dopabrain.com/number-puzzle/">
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3600813755953882" crossorigin="anonymous"></script>
-
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-J8GSWM40TV"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-J8GSWM40TV');</script>
-<script>setTimeout(function(){if(typeof gtag!=='undefined')gtag('event','page_engage',{event_category:'number_puzzle',engagement_time_msec:5000})},5000);</script>
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
@@ -81,64 +77,7 @@
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock"
       },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.6",
-        "ratingCount": "3200",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
       "featureList": "4x4 grid, tile merging gameplay, score system, high score saving, sound effects, combo system, multilingual support, responsive design"
-    }
-    </script>
-
-    <!-- FAQPage Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "How do you play Number Puzzle 2048?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Swipe or use arrow keys to slide numbered tiles on a 4x4 grid. When two tiles with the same number collide, they merge into one tile with double the value. The goal is to create a tile with the number 2048."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What happens when I reach 2048?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "When you create a 2048 tile, you win! But the game doesn't stop there — you can keep playing to achieve even higher scores and create tiles beyond 2048."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Can I undo a move in Number Puzzle?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes! The game includes an undo button that lets you reverse your last move. This helps when you accidentally make a wrong swipe."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Is Number Puzzle free to play?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes! Number Puzzle is completely free to play in your web browser. No download or registration required. It works on mobile, tablet, and desktop."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Does Number Puzzle save my high score?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes! Your best score is automatically saved in your browser. You can also share your score with friends using the share button."
-                }
-            }
-        ]
     }
     </script>
 
@@ -170,7 +109,7 @@
     <link rel="apple-touch-icon" href="icon-192.svg">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-ad-serving="suspended-invalid-traffic-2026-09-03">
     <a href="#main-content" class="skip-link" data-i18n="accessibility.skipToMain">Skip to main content</a>
     <div class="app-loader" id="app-loader">
         <div class="loader-content">
@@ -178,16 +117,6 @@
             <div class="loader-spinner"></div>
             <div class="loader-text" data-i18n="app.loading">로딩 중...</div>
         </div>
-    </div>
-
-    <!-- Top Ad Banner -->
-    <div id="top-ad-banner" class="ad-banner">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3600813755953882"
-             data-ad-slot="auto"
-             data-ad-format="horizontal"
-             data-full-width-responsive="true"></ins>
     </div>
 
     <!-- Main Container -->
@@ -258,43 +187,10 @@
             <p data-i18n="game.controls">화살표 또는 스와이프로 이동합니다.</p>
         </div>
 
-        <!-- DopaBrain Apps Section -->
-        <div class="dopabrain-section">
-            <h3 class="dopabrain-title" data-i18n="dopabrain.title">다른 DopaBrain 앱도 즐겨보세요</h3>
-            <div class="dopabrain-grid" id="dopabrain-grid">
-                <!-- Populated by JavaScript -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Bottom Ad Banner -->
-    <div id="bottom-ad-banner" class="ad-banner">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3600813755953882"
-             data-ad-slot="auto"
-             data-ad-format="horizontal"
-             data-full-width-responsive="true"></ins>
-    </div>
-
-    <!-- Interstitial Ad Container (hidden) -->
-    <div id="interstitial-ad" class="interstitial-ad hidden">
-        <div class="interstitial-content">
-            <div class="interstitial-close" id="interstitial-close">×</div>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3600813755953882"
-                 data-ad-slot="auto"
-                 data-ad-format="rectangle"
-                 data-full-width-responsive="true"></ins>
-        </div>
     </div>
 
     <!-- Confetti Canvas -->
     <canvas id="confetti-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000;"></canvas>
-
-    <!-- Cross Promotion Recommendations -->
-    
 
             <!-- Footer with Home Link -->
     <footer class="game-footer">
@@ -313,29 +209,20 @@
     <script src="js/sound-engine.js"></script>
     <script src="js/i18n.js"></script>
     <script src="/portal/js/haptic.js"></script>
-    <script src="/portal/js/daily-streak.js"></script>
-    <script src="/portal/js/game-ads.js"></script>
-    <script src="/portal/js/achievements.js"></script>
     <script src="js/app.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3600813755953882" crossorigin="anonymous"></script>
-    <script>
-        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
-    </script>
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js').catch(() => {});
         }
     </script>
-    <div id="share-float" style="position:fixed;bottom:80px;right:16px;z-index:99"><button onclick="(async()=>{const u=location.href,t=document.title;if(typeof gtag==='function')gtag('event','share',{method:navigator.share?'native':'clipboard',app_name:'number-puzzle'});if(navigator.share){try{await navigator.share({title:t,url:u})}catch(e){}}else{await navigator.clipboard.writeText(u);this.textContent='✅';setTimeout(()=>this.textContent='📤',1500)}})()" style="width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:20px;cursor:pointer;backdrop-filter:blur(8px)">📤</button></div>
-    <div style="max-width:420px;margin:20px auto;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);">
+    <div class="related-tests" style="max-width:420px;margin:20px auto;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);">
       <h3 data-i18n="related.title" style="font-size:16px;color:#a0a0b8;margin-bottom:12px;text-align:center;">More to Explore</h3>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <a href="/puzzle-2048/" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;text-decoration:none;color:#fff;"><span style="font-size:28px;">🧩</span><span data-i18n="related.puzzle2048" style="font-size:12px;font-weight:600;color:#a0a0b8;">Puzzle 2048</span></a>
-        <a href="/block-puzzle/" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;text-decoration:none;color:#fff;"><span style="font-size:28px;">📦</span><span data-i18n="related.blockPuzzle" style="font-size:12px;font-weight:600;color:#a0a0b8;">Block Puzzle</span></a>
-        <a href="/minesweeper/" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;text-decoration:none;color:#fff;"><span style="font-size:28px;">💣</span><span data-i18n="related.minesweeper" style="font-size:12px;font-weight:600;color:#a0a0b8;">Minesweeper</span></a>
-        <a href="/memory-card/" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;text-decoration:none;color:#fff;"><span style="font-size:28px;">🃏</span><span data-i18n="related.memoryCard" style="font-size:12px;font-weight:600;color:#a0a0b8;">Memory Card</span></a>
+      <div class="related-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <a href="/puzzle-2048/" class="related-card" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;text-decoration:none;color:#fff;"><span style="font-size:28px;">🧩</span><span data-i18n="related.puzzle2048" style="font-size:12px;font-weight:600;color:#a0a0b8;">Puzzle 2048</span></a>
+        <a href="/block-puzzle/" class="related-card" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;text-decoration:none;color:#fff;"><span style="font-size:28px;">📦</span><span data-i18n="related.blockPuzzle" style="font-size:12px;font-weight:600;color:#a0a0b8;">Block Puzzle</span></a>
+        <a href="/minesweeper/" class="related-card" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;text-decoration:none;color:#fff;"><span style="font-size:28px;">💣</span><span data-i18n="related.minesweeper" style="font-size:12px;font-weight:600;color:#a0a0b8;">Minesweeper</span></a>
+        <a href="/memory-card/" class="related-card" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;text-decoration:none;color:#fff;"><span style="font-size:28px;">🃏</span><span data-i18n="related.memoryCard" style="font-size:12px;font-weight:600;color:#a0a0b8;">Memory Card</span></a>
       </div>
     </div>
-    <script src="/portal/js/cross-promo.js" defer></script>
 </body>
 </html>

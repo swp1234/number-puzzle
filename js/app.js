@@ -1,4 +1,11 @@
 // Theme toggle functionality
+const numberPuzzleStages = new Set();
+
+function trackNumberPuzzleStage(name) {
+    if (numberPuzzleStages.has(name) || typeof window.gtag !== 'function') return;
+    numberPuzzleStages.add(name);
+    window.gtag('event', name, { app_name: 'number-puzzle', content_group: 'game' });
+}
 const themeToggle = document.getElementById('theme-toggle');
 if (themeToggle) {
     const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -25,22 +32,11 @@ class Game2048 {
         this.comboCount = 0;
         this.lastMergeScore = 0;
         this.newBestShown = false;
-        this.interstitialCount = 0;
-        this.dopabrainApps = [
-            { name: 'Quiz', emoji: '🎯', url: '/projects/quiz-app' },
-            { name: 'Shopping Calc', emoji: '💰', url: '/projects/global-shopping-calc' },
-            { name: 'Digital Detox', emoji: '📵', url: '/projects/digital-detox' },
-            { name: 'Dream Fortune', emoji: '✨', url: '/projects/dream-fortune' },
-            { name: 'Affirmation', emoji: '💝', url: '/projects/daily-affirmation' },
-            { name: 'Lottery', emoji: '🎰', url: '/projects/lottery-generator' },
-            { name: 'D-Day Counter', emoji: '📅', url: '/projects/d-day-counter' },
-            { name: 'MBTI Tips', emoji: '🔮', url: '/projects/mbti-tips' }
-        ];
+        this.validMoves = 0;
 
         this.init();
         this.setupEventListeners();
-        this.populateDopaBrainApps();
-        this.initializeAnalytics();
+        trackNumberPuzzleStage('number_puzzle_view');
     }
 
     init(fresh = false) {
@@ -99,8 +95,6 @@ class Game2048 {
         const langMenu = document.getElementById('lang-menu');
         const overlayBtn = document.getElementById('overlay-btn');
         const overlayBtnSecondary = document.getElementById('overlay-btn-secondary');
-        const interstitialClose = document.getElementById('interstitial-close');
-        const interstitialAd = document.getElementById('interstitial-ad');
 
         if (newGameBtn) newGameBtn.addEventListener('click', () => this.newGame());
         if (undoBtn) undoBtn.addEventListener('click', () => this.undo());
@@ -136,31 +130,13 @@ class Game2048 {
             });
         }
 
-        // Share score button
         const shareScoreBtn = document.getElementById('share-score-btn');
         if (shareScoreBtn) {
-            shareScoreBtn.addEventListener('click', () => {
-                const text = `I scored ${this.score} in Number Puzzle! Can you beat me? \uD83D\uDD22`;
-                const url = 'https://dopabrain.com/number-puzzle/';
-                if (navigator.share) {
-                    navigator.share({ title: 'Number Puzzle', text, url }).catch(() => {});
-                } else {
-                    navigator.clipboard.writeText(text + '\n' + url).then(() => {
-                        const orig = shareScoreBtn.textContent;
-                        shareScoreBtn.textContent = 'Copied!';
-                        setTimeout(() => shareScoreBtn.textContent = orig, 1500);
-                    }).catch(() => {});
-                }
-                if (typeof gtag === 'function') gtag('event', 'share', { method: navigator.share ? 'native' : 'clipboard', app_name: 'number-puzzle' });
-            });
+            shareScoreBtn.addEventListener('click', () => this.shareResult());
         }
-
-        // Interstitial close
-        if (interstitialClose) {
-            interstitialClose.addEventListener('click', () => {
-                if (interstitialAd) interstitialAd.classList.add('hidden');
-            });
-        }
+        document.querySelector('.related-grid')?.addEventListener('click', (event) => {
+            if (event.target.closest('.related-card')) trackNumberPuzzleStage('number_puzzle_related_click');
+        });
     }
 
     updateLanguageUI() {
@@ -233,13 +209,6 @@ class Game2048 {
     }
 
     move(direction) {
-        // GA4 engagement on first move
-        if (!this._engageFired) {
-            this._engageFired = true;
-            if (typeof gtag === 'function') {
-                gtag('event', 'engagement', { event_category: 'number_puzzle', event_label: 'first_interaction' });
-            }
-        }
         this.saveHistory();
 
         const oldTiles = [...this.tiles];
@@ -266,6 +235,10 @@ class Game2048 {
             return;
         }
 
+        this.validMoves++;
+        if (this.validMoves === 1) trackNumberPuzzleStage('number_puzzle_start');
+        if (this.validMoves === 3) trackNumberPuzzleStage('number_puzzle_progress');
+
         // Reset combo if no merges happened this move
         const oldScore = this.history[this.history.length - 1]?.score || 0;
         if (this.score === oldScore) {
@@ -277,12 +250,6 @@ class Game2048 {
         this.render();
         this.saveGameState();
 
-        // Check for interstitial ad
-        this.interstitialCount++;
-        if (this.interstitialCount >= 3) {
-            this.showInterstitialAd();
-            this.interstitialCount = 0;
-        }
     }
 
     moveLeft() {
@@ -471,14 +438,10 @@ class Game2048 {
             this.clearGameState();
             if (window.sfx) window.sfx.play('gameover');
             if (typeof Haptic !== 'undefined') Haptic.heavy();
-            if (typeof DailyStreak !== 'undefined') DailyStreak.report(this.score);
-            if (typeof GameAchievements !== 'undefined') GameAchievements.report({
-                bestScore: this.bestScore,
-                totalGames: parseInt(localStorage.getItem('numberPuzzle_totalGames') || '0', 10) + 1,
-                bestCombo: this.comboCount
-            });
             this.showGameOverOverlay();
         }
+
+        if (this.won || this.gameOver) trackNumberPuzzleStage('number_puzzle_complete');
     }
 
     canMove() {
@@ -572,58 +535,25 @@ class Game2048 {
     }
 
     showGameOverOverlay() {
-        const showOverlay = () => {
-            const overlay = document.getElementById('game-overlay');
-            const title = document.getElementById('overlay-title');
-            const message = document.getElementById('overlay-message');
-            const btn = document.getElementById('overlay-btn');
-            const btnSecondary = document.getElementById('overlay-btn-secondary');
+        const overlay = document.getElementById('game-overlay');
+        const title = document.getElementById('overlay-title');
+        const message = document.getElementById('overlay-message');
+        const btn = document.getElementById('overlay-btn');
+        const btnSecondary = document.getElementById('overlay-btn-secondary');
 
-            title.textContent = i18n.t('game.gameOver');
-            message.innerHTML = `${i18n.t('game.finalScore')}: <strong>${this.score}</strong><br>${i18n.t('game.bestScore')}: <strong>${this.bestScore}</strong>`;
-            btn.textContent = i18n.t('game.newGame');
-            btnSecondary.classList.add('hidden');
-
-            btn.onclick = () => {
-                if (typeof GameAds !== 'undefined') GameAds.removeRewardButton('#game-overlay');
-                this.hideOverlay();
-                this.newGame();
-            };
-
-            overlay.classList.add('show');
-
-            // Rewarded ad — watch ad for 2x score
-            if (typeof GameAds !== 'undefined') {
-                GameAds.injectRewardButton({
-                    container: '#game-overlay',
-                    label: 'Watch Ad for 2x Score',
-                    onReward: () => {
-                        this.score *= 2;
-                        this.updateBestScore();
-                        this.renderStats();
-                        message.innerHTML = `${i18n.t('game.finalScore')}: <strong>${this.score}</strong><br>${i18n.t('game.bestScore')}: <strong>${this.bestScore}</strong>`;
-                    }
-                });
-            }
+        title.textContent = i18n.t('game.gameOver');
+        message.innerHTML = `${i18n.t('game.finalScore')}: <strong>${this.score}</strong><br>${i18n.t('game.bestScore')}: <strong>${this.bestScore}</strong>`;
+        btn.textContent = i18n.t('game.newGame');
+        btnSecondary.classList.add('hidden');
+        btn.onclick = () => {
+            this.hideOverlay();
+            this.newGame();
         };
-
-        if (typeof GameAds !== 'undefined') {
-            GameAds.showInterstitial({ onComplete: () => { showOverlay(); } });
-        } else {
-            showOverlay();
-        }
+        overlay.classList.add('show');
     }
 
     hideOverlay() {
         document.getElementById('game-overlay').classList.remove('show');
-    }
-
-    showInterstitialAd() {
-        const ad = document.getElementById('interstitial-ad');
-        ad.classList.remove('hidden');
-        setTimeout(() => {
-            ad.classList.add('hidden');
-        }, 5000);
     }
 
     playConfetti() {
@@ -678,6 +608,16 @@ class Game2048 {
             console.warn('Could not update game count:', e.message);
         }
         this.init(true);
+    }
+
+    async shareResult() {
+        const text = 'I played Number Puzzle on DopaBrain.';
+        const url = 'https://dopabrain.com/number-puzzle/';
+        try {
+            if (navigator.share) await navigator.share({ title: 'Number Puzzle', text, url });
+            else await navigator.clipboard.writeText(`${text} ${url}`);
+            trackNumberPuzzleStage('number_puzzle_share');
+        } catch (_) {}
     }
 
     loadBestScore() {
@@ -745,31 +685,6 @@ class Game2048 {
         }
     }
 
-    populateDopaBrainApps() {
-        const grid = document.getElementById('dopabrain-grid');
-        grid.innerHTML = '';
-
-        this.dopabrainApps.forEach(app => {
-            const card = document.createElement('a');
-            card.href = app.url;
-            card.className = 'dopabrain-card';
-            card.innerHTML = `
-                <div class="dopabrain-icon">${app.emoji}</div>
-                <div class="dopabrain-name">${app.name}</div>
-            `;
-            grid.appendChild(card);
-        });
-    }
-
-    initializeAnalytics() {
-        // GA4 Event Tracking
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'game_start', {
-                'game_name': '2048 Number Puzzle',
-                'timestamp': new Date().toISOString()
-            });
-        }
-    }
 }
 
 // Shake animation CSS
@@ -790,31 +705,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const game = new Game2048();
         window.game = game;
-        if (typeof DailyStreak !== 'undefined') DailyStreak.init({ gameId: 'number-puzzle', bestScoreKey: 'bestScore-2048', minTarget: 100 });
-        if (typeof GameAds !== 'undefined') GameAds.init();
-        if (typeof GameAchievements !== 'undefined') GameAchievements.init({
-            gameId: 'number-puzzle',
-            defs: [
-                { id: 'score_500', stat: 'bestScore', target: 500, icon: '⭐', name: 'Number Novice' },
-                { id: 'score_2000', stat: 'bestScore', target: 2000, icon: '🏆', name: 'Number Master' },
-                { id: 'score_5000', stat: 'bestScore', target: 5000, icon: '👑', name: 'Number Legend' },
-                { id: 'games_10', stat: 'totalGames', target: 10, icon: '🎮', name: 'Regular Player' },
-                { id: 'games_50', stat: 'totalGames', target: 50, icon: '🔥', name: 'Dedicated' },
-                { id: 'combo_5', stat: 'bestCombo', target: 5, icon: '💥', name: 'Combo King' }
-            ]
-        });
-
-        // GA4 engagement tracking
-        let scrollFired = false;
-        window.addEventListener('scroll', function() {
-            if (!scrollFired && window.scrollY > 100) {
-                scrollFired = true;
-                if (typeof gtag === 'function') gtag('event', 'scroll_engagement', { engagement_type: 'scroll' });
-            }
-        }, { passive: true });
-        setTimeout(function() {
-            if (typeof gtag === 'function') gtag('event', 'timer_engagement', { engagement_time_msec: 5000 });
-        }, 5000);
     } catch (e) {
         console.error('Game init error:', e);
     } finally {

@@ -135,6 +135,7 @@ class I18n {
 
 // Global instance
 const i18n = new I18n();
+window.i18n = i18n;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {

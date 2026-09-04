@@ -34,19 +34,24 @@ class SoundEngine {
     tone(freq, dur, type = 'sine', env = {}) {
         if (!this.ctx || !this.master) return;
         const now = this.ctx.currentTime;
+        const safeDuration = Math.max(0.01, Number(dur) || 0);
         const osc = this.ctx.createOscillator();
         osc.type = type;
         osc.frequency.setValueAtTime(freq, now);
         const g = this.ctx.createGain();
         g.connect(this.master);
-        const a = env.a || 0.01, d = env.d || 0.05, s = env.s || 0.3;
+        const a = Math.min(Math.max(0, env.a ?? 0.01), safeDuration);
+        const d = Math.min(Math.max(0, env.d ?? 0.05), safeDuration - a);
+        const s = env.s ?? 0.3;
+        const decayEnd = now + a + d;
         g.gain.setValueAtTime(0, now);
         g.gain.linearRampToValueAtTime(1, now + a);
-        g.gain.linearRampToValueAtTime(s, now + a + d);
-        g.gain.linearRampToValueAtTime(0, now + dur);
+        g.gain.linearRampToValueAtTime(s, decayEnd);
+        if (decayEnd < now + safeDuration) g.gain.setValueAtTime(s, decayEnd);
+        g.gain.linearRampToValueAtTime(0, now + safeDuration);
         osc.connect(g);
         osc.start(now);
-        osc.stop(now + dur);
+        osc.stop(now + safeDuration);
     }
 
     play(type) {

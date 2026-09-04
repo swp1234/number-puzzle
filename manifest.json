@@ -1,44 +1,27 @@
 {
-  "name": "Number Puzzle 2048",
-  "short_name": "2048",
-  "description": "숫자를 합쳐 2048을 만드는 중독성 높은 퍼즐 게임",
-  "start_url": ".",
+  "name": "Number Puzzle",
+  "short_name": "Number Puzzle",
+  "description": "Slide and merge number tiles in a free browser puzzle.",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#EDB879",
   "background_color": "#f5f5f5",
-  "lang": "ko",
+  "lang": "en",
   "dir": "ltr",
-  "categories": [
-    "games",
-    "entertainment"
-  ],
+  "categories": ["games", "entertainment"],
   "icons": [
-    {
-      "src": "icon-192.svg",
-      "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-512.svg",
-      "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    }
+    { "src": "icon-192.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon-512.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any" }
   ],
   "shortcuts": [
     {
-      "name": "새 게임",
-      "short_name": "시작",
-      "description": "새 게임 시작",
-      "url": "index.html?action=newgame",
-      "icons": [
-        {
-          "src": "icon-192.svg",
-          "sizes": "192x192"
-        }
-      ]
+      "name": "New game",
+      "short_name": "Play",
+      "description": "Start Number Puzzle",
+      "url": "./?action=newgame",
+      "icons": [{ "src": "icon-192.svg", "sizes": "192x192", "type": "image/svg+xml" }]
     }
   ]
 }

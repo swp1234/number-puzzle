@@ -22,9 +22,6 @@
     "gameOverMessage": "没有可用的移动。",
     "shareScore": "分享分数"
   },
-  "dopabrain": {
-    "title": "尝试其他DopaBrain应用"
-  },
   "related": {
     "title": "更多探索",
     "puzzle2048": "2048拼图",
