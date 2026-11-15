@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "ナンバーパズル2048",
-    "description": "同じ数字を組み合わせて2048に達する"
+    "description": "同じ数字を組み合わせて2048に達する",
+    "loading": "読み込み中..."
   },
   "meta": {
     "description": "ナンバーパズル2048 - 同じ数字を組み合わせて2048に達しましょう。スワイプまたは矢印キーで遊びます。"
@@ -20,7 +21,8 @@
     "wonMessage": "おめでとうございます! 2048に達しました!",
     "continue": "続ける",
     "gameOverMessage": "これ以上の移動はできません。",
-    "shareScore": "スコア共有"
+    "shareScore": "スコア共有",
+    "back": "DopaBrain ホーム"
   },
   "related": {
     "title": "もっと探索",
@@ -28,5 +30,8 @@
     "blockPuzzle": "ブロックパズル",
     "minesweeper": "マインスイーパー",
     "memoryCard": "メモリーカード"
+  },
+  "accessibility": {
+    "skipToMain": "メインコンテンツへ移動"
   }
 }

@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "Puzle Numérico 2048",
-    "description": "Combina números para alcanzar 2048"
+    "description": "Combina números para alcanzar 2048",
+    "loading": "Cargando..."
   },
   "meta": {
     "description": "Puzle Numérico 2048 - Combina números iguales para alcanzar 2048. Juega con deslizamientos o teclas de flecha."
@@ -20,7 +21,8 @@
     "wonMessage": "¡Felicidades! ¡Alcanzaste 2048!",
     "continue": "Continuar",
     "gameOverMessage": "No hay más movimientos disponibles.",
-    "shareScore": "Compartir"
+    "shareScore": "Compartir",
+    "back": "Inicio de DopaBrain"
   },
   "related": {
     "title": "Más juegos",
@@ -28,5 +30,8 @@
     "blockPuzzle": "Puzzle de Bloques",
     "minesweeper": "Buscaminas",
     "memoryCard": "Tarjeta de Memoria"
+  },
+  "accessibility": {
+    "skipToMain": "Ir al contenido principal"
   }
 }

@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "Number Puzzle 2048",
-    "description": "Combine numbers to reach 2048"
+    "description": "Combine numbers to reach 2048",
+    "loading": "Loading..."
   },
   "meta": {
     "description": "Number Puzzle 2048 - Combine tiles to reach 2048. Play with swipe or arrow keys."
@@ -20,7 +21,8 @@
     "wonMessage": "Congratulations! You reached 2048!",
     "continue": "Continue",
     "gameOverMessage": "No more moves available.",
-    "shareScore": "Share Score"
+    "shareScore": "Share Score",
+    "back": "DopaBrain Home"
   },
   "related": {
     "title": "More to Explore",
@@ -28,5 +30,8 @@
     "blockPuzzle": "Block Puzzle",
     "minesweeper": "Minesweeper",
     "memoryCard": "Memory Card"
+  },
+  "accessibility": {
+    "skipToMain": "Skip to main content"
   }
 }

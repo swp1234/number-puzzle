@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "Sayı Bulmacası 2048",
-    "description": "2048'e ulaşmak için sayıları birleştirin"
+    "description": "2048'e ulaşmak için sayıları birleştirin",
+    "loading": "Yükleniyor..."
   },
   "meta": {
     "description": "Sayı Bulmacası 2048 - Aynı sayıları birleştirerek 2048'e ulaşın. Kaydırma veya ok tuşlarıyla oynayın."
@@ -20,7 +21,8 @@
     "wonMessage": "Tebrikler! 2048'e ulaştınız!",
     "continue": "Devam Et",
     "gameOverMessage": "Daha fazla hamle yok.",
-    "shareScore": "Puanı Paylaş"
+    "shareScore": "Puanı Paylaş",
+    "back": "DopaBrain Ana Sayfa"
   },
   "related": {
     "title": "Daha fazla keşfet",
@@ -28,5 +30,8 @@
     "blockPuzzle": "Blok Bulmaca",
     "minesweeper": "Mayın Tarlası",
     "memoryCard": "Hafıza Kartı"
+  },
+  "accessibility": {
+    "skipToMain": "Ana içeriğe geç"
   }
 }

@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "数字拼图2048",
-    "description": "合并数字达到2048"
+    "description": "合并数字达到2048",
+    "loading": "加载中..."
   },
   "meta": {
     "description": "数字拼图2048 - 合并相同数字达到2048。使用滑动或方向键游玩。"
@@ -20,7 +21,8 @@
     "wonMessage": "恭喜！你达到了2048!",
     "continue": "继续游戏",
     "gameOverMessage": "没有可用的移动。",
-    "shareScore": "分享分数"
+    "shareScore": "分享分数",
+    "back": "DopaBrain 主页"
   },
   "related": {
     "title": "更多探索",
@@ -28,5 +30,8 @@
     "blockPuzzle": "方块拼图",
     "minesweeper": "扫雷",
     "memoryCard": "记忆卡片"
+  },
+  "accessibility": {
+    "skipToMain": "跳转到主要内容"
   }
 }

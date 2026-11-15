@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "Puzzle Numérique 2048",
-    "description": "Combinez les chiffres pour atteindre 2048"
+    "description": "Combinez les chiffres pour atteindre 2048",
+    "loading": "Chargement..."
   },
   "meta": {
     "description": "Puzzle Numérique 2048 - Combinez les mêmes chiffres pour atteindre 2048. Jouez avec le swipe ou les flèches."
@@ -20,7 +21,8 @@
     "wonMessage": "Félicitations! Vous avez atteint 2048!",
     "continue": "Continuer",
     "gameOverMessage": "Aucun autre mouvement disponible.",
-    "shareScore": "Partager"
+    "shareScore": "Partager",
+    "back": "Accueil DopaBrain"
   },
   "related": {
     "title": "À découvrir",
@@ -28,5 +30,8 @@
     "blockPuzzle": "Puzzle de Blocs",
     "minesweeper": "Démineur",
     "memoryCard": "Carte Mémoire"
+  },
+  "accessibility": {
+    "skipToMain": "Aller au contenu principal"
   }
 }

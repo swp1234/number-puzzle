@@ -92,8 +92,8 @@ class I18n {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                 element.placeholder = text;
             } else if (element.tagName === 'BUTTON' || element.tagName === 'A') {
-                element.textContent = text;
-            } else {
+                if (!element.querySelector('svg')) element.textContent = text;
+            } else if (!element.querySelector('svg')) {
                 element.textContent = text;
             }
         });

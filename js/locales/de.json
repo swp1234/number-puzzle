@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "Zahlenpuzzle 2048",
-    "description": "Kombinieren Sie Zahlen, um 2048 zu erreichen"
+    "description": "Kombinieren Sie Zahlen, um 2048 zu erreichen",
+    "loading": "Wird geladen..."
   },
   "meta": {
     "description": "Zahlenpuzzle 2048 - Kombinieren Sie gleiche Zahlen, um 2048 zu erreichen. Spielen Sie mit Wischen oder Pfeiltasten."
@@ -20,7 +21,8 @@
     "wonMessage": "Glückwunsch! Du hast 2048 erreicht!",
     "continue": "Fortfahren",
     "gameOverMessage": "Keine weiteren Züge verfügbar.",
-    "shareScore": "Teilen"
+    "shareScore": "Teilen",
+    "back": "DopaBrain Startseite"
   },
   "related": {
     "title": "Mehr entdecken",
@@ -28,5 +30,8 @@
     "blockPuzzle": "Block-Puzzle",
     "minesweeper": "Minesweeper",
     "memoryCard": "Memory-Karten"
+  },
+  "accessibility": {
+    "skipToMain": "Zum Hauptinhalt springen"
   }
 }

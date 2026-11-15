@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "Teka-teki Angka 2048",
-    "description": "Gabungkan angka untuk mencapai 2048"
+    "description": "Gabungkan angka untuk mencapai 2048",
+    "loading": "Memuat..."
   },
   "meta": {
     "description": "Teka-teki Angka 2048 - Gabungkan angka yang sama untuk mencapai 2048. Mainkan dengan geser atau tombol panah."
@@ -20,7 +21,8 @@
     "wonMessage": "Selamat! Anda mencapai 2048!",
     "continue": "Lanjutkan",
     "gameOverMessage": "Tidak ada lagi gerakan yang tersedia.",
-    "shareScore": "Bagikan Skor"
+    "shareScore": "Bagikan Skor",
+    "back": "Beranda DopaBrain"
   },
   "related": {
     "title": "Jelajahi lainnya",
@@ -28,5 +30,8 @@
     "blockPuzzle": "Puzzle Blok",
     "minesweeper": "Penyapu Ranjau",
     "memoryCard": "Kartu Memori"
+  },
+  "accessibility": {
+    "skipToMain": "Lewati ke konten utama"
   }
 }
